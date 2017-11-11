@@ -1,26 +1,20 @@
 import React from 'react';
-import reactDOM from 'react-dom'
-import {getStore} from './getStore';
-import {Provider} from 'react-redux';
-
-import { DevTools } from './components/DevTools/DevTools'
+import { render } from 'react-dom';
+import { getStore } from './getStore';
 import { App } from './App';
 
-const store = getStore();
+const appStore = getStore();
 
-const Main = ()=>(
-    <Provider store={store}>
-        <App/>
-    </Provider>
-)
+const Main = () => (
+	<App />
+);
 
-const render = (store)=>{
-        reactDOM.render(
-            <div>
-                <Main state={store.getState()}/>
-                <DevTools store={store}/>
-            </div>,
-            document.getElementById('AppContainer'));
+const renderApp = (store) => {
+	render(
+		<div>
+			<Main state={store.getState()} />
+		</div>,
+		document.getElementById('AppContainer'));
 };
 
-render(store);
+renderApp(appStore);
